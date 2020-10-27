@@ -3,7 +3,7 @@ include "view/template/nav.php";
 include "view/template/header.php";
 ?>
 
-<p>Vos utilisateurs en base de données s'affichent sur cette page</p>
+<p>Le livre sur lequel on a cliqué s'affiche ici</p>
 
 <?php
  $script = "<script src='public/js/layer.js'></script>";
