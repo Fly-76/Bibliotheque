@@ -16,9 +16,11 @@
     <tbody>
         <?php foreach ($users as $key => $user) { ?>
             <tr>
-            <td><a href="user.php?id=<?= $user->getId() ?>" >
-                <?= $user->getCivility() . " " . $user->getFirstname() . " " . $user->getLastname() ?>
-            </a></td>
+            <td>
+                <a href="user.php?id=<?= $user->getId() ?>" >
+                    <?= $user->getCivility() . " " . $user->getFirstname() . " " . $user->getLastname() ?>
+                </a>
+            </td>
             <td><?= $user->getEmail() ?></td>
             <td><?= $user->getAdress() . " " . $user->getZip_code() . " " . $user->getCity() ?></td>
             </tr>
