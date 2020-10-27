@@ -1,6 +1,7 @@
 <?php
+require_once "model/Manager.php";
 
-class bookManager {
+class BookManager extends Database {
 
   // Récupère tous les livres
   public function getBooks() {

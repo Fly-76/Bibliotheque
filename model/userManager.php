@@ -1,6 +1,7 @@
 <?php
+require_once "model/Manager.php";
 
-class userManager {
+class UserManager extends Database {
 
   // Récupère tous les utilisateurs
   public function getUsers() {
