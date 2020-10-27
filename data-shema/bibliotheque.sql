@@ -36,7 +36,7 @@ CREATE TABLE Book(
 	summary TEXT(500),
 	release_date DATE NOT NULL,
 	category VARCHAR(10) NOT NULL,
-	status VARCHAR(10) NOT NULL,
+	status VARCHAR(20) NOT NULL,
 	user_id INT UNSIGNED,
 	PRIMARY KEY (id),
 	FOREIGN KEY (user_id) REFERENCES User(id)
