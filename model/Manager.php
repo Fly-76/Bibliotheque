@@ -17,7 +17,7 @@ abstract class Connexion {
   }
 }
 
-abstract class Database {
+abstract class Manager {
   protected PDO $db;
 
   public function __construct() {
