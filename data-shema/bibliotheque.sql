@@ -35,7 +35,7 @@ CREATE TABLE Book(
 	author VARCHAR(100) NOT NULL,
 	summary TEXT(500),
 	release_date DATE NOT NULL,
-	category VARCHAR(10) NOT NULL,
+	category VARCHAR(20) NOT NULL,
 	status VARCHAR(20) NOT NULL,
 	user_id INT UNSIGNED,
 	PRIMARY KEY (id),

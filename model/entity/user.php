@@ -61,8 +61,8 @@ class User extends Entity {
     public function setEmail(string $email):User
     {
         if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $this->email = $email;
-        return $this;
+            $this->email = $email;
+            return $this;
         }
         throw new Exception("Format d'email incorrect");
     }
