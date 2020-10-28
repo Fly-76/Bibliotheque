@@ -14,11 +14,16 @@ abstract class Entity {
     return $this;
   }
 
+  public function __construct() {}
+
   protected function hydrate(array $data) {
     foreach ($data as $key => $value) {
       $method = "set" . ucfirst($key);
       if(method_exists($this, $method)) {
-        $value = htmlspecialchars($value);
+
+        if (gettype($value) !== "NULL" && gettype($value) !== "array")
+          $value = htmlspecialchars($value);
+
         $this->$method($value);
       }
     }
