@@ -3,10 +3,17 @@
     include "view/template/header.php";
 
     require_once "view/formView.php";
-    $form = new Form('','POST','form-inline');
-	$form->setText('user', 'Adhérent');
-    $form->setSubmit('add_book','Emprunter');
-    $form->showForm();
+    if ($status=='Disponible') {
+        $form = new Form('','POST','form-inline');
+        $form->setText('user', 'Adhérent');
+        $form->setSubmit('loan_book','Emprunter');
+        $form->showForm();
+    }
+    if ($status=='Emprunté') {
+        $form = new Form('','POST','form-inline');
+        $form->setSubmit('return_book','Rendre');
+        $form->showForm();
+    }    
 ?>
 
     <table class="table table-striped table-bordered table-sm">
