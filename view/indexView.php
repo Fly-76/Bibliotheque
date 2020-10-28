@@ -13,7 +13,7 @@
         <th class="th-sm">Parution</th>
         <th class="th-sm">Catégorie</th>
         <th class="th-sm">Statut</th>
-        <th class="th-sm">Utilisateur</th>        
+        <th class="th-sm">Adhérent</th>        
     </tr>
     </thead>
     <tbody>
@@ -26,7 +26,7 @@
                 <td><?= $book->getRelease_date() ?></td>
                 <td><?= $book->getCategory() ?></td>
                 <td><?= $book->getStatus() ?></td>
-                <td></td>
+                <td><?= $book->getUser_id() ?></td>
             </tr>
         <?php } ?>
     </tbody>

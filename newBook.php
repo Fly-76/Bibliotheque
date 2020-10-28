@@ -12,7 +12,7 @@ if(isset($_POST["add_book"])) {
         header("Location: index.php");
         exit();
     }
-    $error = "Une erreur est survenue, votre compte n'a pas été enregistré";
+    $error = "Une erreur est survenue, le livre n'a pas été enregistré";
 }  
 
 require "view/newBookView.php";

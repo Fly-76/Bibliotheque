@@ -90,7 +90,7 @@ class Book extends Entity {
 	}
 
 
-	public function getUser_id():string
+	public function getUser_id():?int
 	{
 	  return $this->user_id;
 	}
