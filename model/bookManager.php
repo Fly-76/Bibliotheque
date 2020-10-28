@@ -30,7 +30,18 @@ class BookManager extends Manager {
 
   // Ajoute un nouveau livre
   public function addBook(Book $book):?int {
-
+    $query = $this->db->prepare(
+      "INSERT INTO Book VALUE (null, :title, :author, :summary, :release_date, :category, 'disponible', null)"
+      );
+  
+      $result = $query->execute([
+        "title" => $book->getTitle(),
+        "author" => $book->getAuthor(),
+        "summary" => $book->getSummary(),
+        "release_date" => $book->getRelease_date(),
+        "category" => $book->getCategory()
+      ]);  
+      return $result;
   }
 
   // Met à jour le statut d'un livre emprunté
@@ -39,3 +50,12 @@ class BookManager extends Manager {
   }
 
 }
+
+
+// try {
+  //     $book = new Book($_POST);
+  //     $book->;
+  //   } catch (\Exception $e) {
+  //     // Will store the different error messages
+  //     $error = $e->getMessage();
+  //   }
