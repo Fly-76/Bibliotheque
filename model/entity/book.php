@@ -95,9 +95,9 @@ class Book extends Entity {
 	  return $this->user_id;
 	}
 
-	// public function setUser_id(int $user_id):Book
-	// {
-	//   $this->user_id = $user_id;
-	//   return $this;
-	// }
+	public function setUser_id(string $user_id):Book
+	{
+	  $this->user_id = intval($user_id, 10);
+	  return $this;
+	}
 }

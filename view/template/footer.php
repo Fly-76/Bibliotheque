@@ -1,5 +1,5 @@
   </main>
-<footer class="jumbotron jumbotron-fluid mt-5 mb-0 bg-danger text-white text-center">
+<footer class="jumbotron jumbotron-fluid mt-5 mb-0 bg-danger text-black text-center">
   <section class="container">
     <p>De Bibliotheca copyright 2020, all rights reserved.</p>
   </section>

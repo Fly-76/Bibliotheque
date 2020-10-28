@@ -15,8 +15,14 @@ class UserManager extends Manager {
   }
 
   // Récupère un utilisateur par son id
-  public function getUserById() {
+  public function getUserById(int $id):?User {
+    $query = $this->db->prepare("SELECT * FROM User WHERE id = :id");
+    $query->execute([
+      "id" => $id
+    ]);
 
+    $user = new User($query->fetch(PDO::FETCH_ASSOC));
+    return $user;
   }
 
   // Récupère un utilisateur par son code personnel

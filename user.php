@@ -10,7 +10,7 @@ if (empty($_GET) || !isset($_GET["id"])) {
 $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
 
 $userManager = new UserManager();
-$user = $userManager->getUser($id);
+$user = $userManager->getUserById($id);
 
 if(!$user) {
   $error ="Utilisateur non trouvé";

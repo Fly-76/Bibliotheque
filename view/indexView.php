@@ -3,7 +3,7 @@
     include "view/template/header.php";
 ?>
 
-<p>Vos livre au catalogue s'affichent sur cette page</p>
+<a href="newBook.php" class="btn btn-warning my-2">Nouveau</a>
 
 <table class="table table-striped table-bordered table-sm">
     <thead>
