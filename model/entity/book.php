@@ -10,7 +10,7 @@ class Book extends Entity {
   protected string $release_date;
   protected string $category;
   protected string $status;
-  protected int $user_id;
+  protected ?int $user_id;
 
   public function __construct(array $data = null) {
     if($data) {
@@ -95,9 +95,9 @@ class Book extends Entity {
 	  return $this->user_id;
 	}
 
-	public function setUser_id(string $user_id):Book
+	public function setUser_id(?int $user_id):Book
 	{
-	  $this->user_id = intval($user_id, 10);
+	  $this->user_id = $user_id;
 	  return $this;
 	}
 }

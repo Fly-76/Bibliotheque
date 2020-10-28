@@ -21,11 +21,11 @@ class BookManager extends Manager {
       "id" => $id
     ]);
 
-    $book = new Book($query->fetch(PDO::FETCH_ASSOC));
-    return $book;
+    // $book = new Book($query->fetch(PDO::FETCH_ASSOC));
+    // return $book;
 
-    // $query->setFetchMode(PDO::FETCH_CLASS, 'Book');
-    // return $query->fetch();
+    $query->setFetchMode(PDO::FETCH_CLASS, 'Book');
+    return $query->fetch();
   }
 
   // Ajoute un nouveau livre

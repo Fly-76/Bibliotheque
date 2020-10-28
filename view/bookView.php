@@ -9,13 +9,16 @@
     $form->showForm();
 ?>
 
-    <p><?= $book->getTitle() ?></p>
-    <p><?= $book->getAuthor() ?></p>
-    <p><?= $book->getSummary() ?></p>
-    <p><?= $book->getRelease_Date() ?></p>
-    <p><?= $book->getCategory() ?></p>
-    <p><?= $book->getStatus() ?></p>
-
+    <table class="table table-striped table-bordered table-sm">
+        <tbody>
+            <tr><th>Titre</th><td><?= $book->getTitle() ?></td></tr>
+            <tr><th>Auteur</th><td><?= $book->getAuthor() ?></td></tr>
+            <tr><th>Résumé</th><td><?= $book->getSummary() ?></td></tr>
+            <tr><th>Date de parution</th><td><?= $book->getRelease_Date() ?></td></tr>
+            <tr><th>Catégorie</th><td><?= $book->getCategory() ?></td></tr>
+            <tr><th>Statut</th><td><?= $book->getStatus() ?></td></tr>
+        </tbody>
+    </table>
 
 <?php
     include "view/template/footer.php";
