@@ -16,7 +16,7 @@ class Form {
     public function setArea(string $reference, string $text){
         $this->html .= "<div class='form-group'>" 
         . "<label for='" . $reference . "'>" . $text . "</label>"
-        . "<textarea class='form-control' id='". $reference . "' rows='3'></textarea></div>";
+        . "<textarea class='form-control' name='". $reference . "' id='". $reference . "' rows='3'></textarea></div>";
     }
 
     public function setSubmit(string $name, string $text){
