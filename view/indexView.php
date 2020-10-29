@@ -3,7 +3,11 @@
     include "view/template/header.php";
 ?>
 
-<a href="newBook.php" class="btn btn-warning my-2">Nouveau</a>
+<a href="newBook.php" class="btn btn-warning col-sm-2 my-2">Ajouter un livre</a>
+
+<div class="alert alert-primary" role="alert">
+    <h5>Liste des livres du catalogue</h5>
+</div>
 
 <table class="table table-striped table-bordered table-sm">
     <thead>

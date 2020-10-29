@@ -8,7 +8,7 @@ class Form {
     }
 
     public function setText(string $reference, string $text){
-        $this->html .= "<div class='form-group row'>" 
+        $this->html .= "<div class='form-group row mx-sm-3 mb-2'>" 
         . "<label for='" . $reference . "' class='col-sm-2 col-form-label'>" . $text . "</label>"
         . "<div class='col-sm-10'><input type='text' class='form-control' name='". $reference . "' id='". $reference . "'/></div></div>";
     }
@@ -20,7 +20,7 @@ class Form {
     }
 
     public function setSubmit(string $name, string $text){
-        $this->html .= "<input type='submit' class='btn btn-warning' name='" . $name ."' value='" . $text ."'>";
+        $this->html .= "<input type='submit' class='btn btn-warning col-sm-2 mb-2 mr-5' name='" . $name ."' value='" . $text ."'>";
     }
 
     public function showForm(){
