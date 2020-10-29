@@ -3,7 +3,12 @@
     include "view/template/header.php";
 ?>
 
-<p>Vos utilisateurs en base de données s'affichent sur cette page</p>
+<a href="newUser.php" class="btn btn-warning col-sm-2 my-2">Ajouter un adhérent</a>
+
+<div class="alert alert-primary" role="alert">
+  <h5>Liste des adhérents</h5>
+</div>
+
 
 <table class="table table-striped table-bordered table-sm">
     <thead>

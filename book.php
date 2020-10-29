@@ -1,15 +1,22 @@
 <?php
 // Controleur qui gère l'affichage du détail d'un livre
-require "model/entity/book.php";
 require "model/entity/user.php";
+require "model/userManager.php";
+
+require "model/entity/book.php";
 require "model/bookManager.php";
+
+// !!! FIRST Check book id exist 
+if (empty($_GET) || !isset($_GET["id"])) {
+    header("Location: index.php");
+    exit();
+}
 
 // Emprunt de livre
 if(isset($_POST["loan_book"])) {
     $bookManager = new BookManager();
 
-    if (isset($_GET["id"]))
-        $bookId = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
+    $bookId = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
 
     if (isset($_POST["user"])) {
         $userId = filter_var($_POST["user"], FILTER_SANITIZE_NUMBER_INT);
@@ -29,8 +36,7 @@ if(isset($_POST["loan_book"])) {
 if(isset($_POST["return_book"])) {
     $bookManager = new BookManager();
 
-    if (isset($_GET["id"]))
-        $bookId = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
+    $bookId = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
 
     $result = $bookManager->updateBookStatus($bookId, 'Disponible', null);
 
@@ -41,9 +47,22 @@ if(isset($_POST["return_book"])) {
     $error = "Une erreur est survenue, le livre n'a pas pu être restitué";
 }
 
-if (empty($_GET) || !isset($_GET["id"])) {
-    header("Location: index.php");
+// Suppression de livre
+if(isset($_POST["delete_book"])) {
+    $bookManager = new BookManager();
+
+    $bookId = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
+
+    $result = $bookManager->deleteBook($bookId);
+
+    if($result) {
+        header("Location: index.php");
+        exit();
+    }
+    $error = "Une erreur est survenue, le livre n'a pas pu être supprimé";
 }
+
+
 $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
 
 $bookManager = new BookManager();

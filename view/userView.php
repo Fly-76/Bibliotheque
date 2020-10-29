@@ -2,12 +2,12 @@
     include "view/template/nav.php";
     include "view/template/header.php";
 ?>
+    <div class="alert alert-primary" role="alert">
+        <h5><td>Adhérent : <?= $user->getCivility() ?> <?= $user->getFirstname() ?> <?= $user->getLastname() ?></h5>
+    </div>
 
     <table class="table table-striped table-bordered table-sm">
         <tbody>
-            <tr><th>Civilité</th><td><?= $user->getCivility() ?></td></tr>
-            <tr><th>Nom</th><td><?= $user->getLastname() ?></td></tr>
-            <tr><th>Prénom</th><td><?= $user->getFirstname() ?></td></tr>
             <tr><th>Email</th><td><?= $user->getEmail() ?></td></tr>
             <tr><th>Adresse</th><td><?= $user->getAdress() ?></td></tr>
             <tr><th>Code postal</th><td><?= $user->getZip_Code() ?></td></tr>

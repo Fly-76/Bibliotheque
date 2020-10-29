@@ -7,6 +7,7 @@
         $form = new Form('','POST','form-inline');
         $form->setText('user', 'Adhérent');
         $form->setSubmit('loan_book','Emprunter');
+        $form->setSubmit('delete_book','Supprimmer');
         $form->showForm();
     }
     if ($status=='Emprunté') {
@@ -15,10 +16,12 @@
         $form->showForm();
     }    
 ?>
+    <div class="alert alert-primary" role="alert">
+        <h5><td>LIVRE : <?= $book->getTitle() ?></h5>
+    </div>
 
     <table class="table table-striped table-bordered table-sm">
         <tbody>
-            <tr><th>Titre</th><td><?= $book->getTitle() ?></td></tr>
             <tr><th>Auteur</th><td><?= $book->getAuthor() ?></td></tr>
             <tr><th>Résumé</th><td><?= $book->getSummary() ?></td></tr>
             <tr><th>Date de parution</th><td><?= $book->getRelease_Date() ?></td></tr>

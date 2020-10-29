@@ -64,4 +64,19 @@ class BookManager extends Manager {
         return $result;
     }
 
+    // Suppession d'un livre
+    public function deleteBook(int $bookId):?int {
+        $query = $this->db->prepare(
+            "DELETE FROM `book` 
+            WHERE
+                `id`=:bookId
+            "
+        );
+
+        $result = $query->execute([
+            "bookId" => $bookId
+        ]);  
+        return $result;
+    }
+
 }

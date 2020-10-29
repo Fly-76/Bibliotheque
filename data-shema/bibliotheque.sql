@@ -49,7 +49,7 @@ ENGINE=InnoDB;
 LOCK TABLES User WRITE, Book WRITE;
 
 	INSERT INTO User VALUES
-	(null, 'Mr', 'Eco', 'Umberto', 'umberto@gmail.com', 'rue de la rose', '666', 'Vatican'),
+	(null, 'Mr', 'Eco', 'Umberto', 'umberto@gmail.com', 'rue du nom de la rose', '666', 'Vatican'),
 	(null, 'Dr', 'Freud', 'Sigmund', 'sigmund.f@joke.com', 'rue des névrosés', '75000', 'Paris'),
 	(null, 'Mlle', 'Byron', 'Augusta Ada', 'lovelace@babage.com', '10 Downing Street', 'SW1A 2AA', 'Londre');
 
