@@ -2,6 +2,10 @@
     include "view/template/nav.php";
     include "view/template/header.php";
 
+    if(!empty($error)) echo "<div class='alert alert-danger'>$error</div>";
+    else {
+
+
     require_once "view/formView.php";
     if ($status=='Disponible') {
         $form = new Form('','POST','form-inline');
@@ -31,5 +35,27 @@
     </table>
 
 <?php
+    if ($status=='Emprunté') {
+?>
+
+    <div class="alert alert-primary" role="alert">
+        <h5><td>Emprunté par : <?= $user->getCivility() ?> <?= $user->getFirstname() ?> <?= $user->getLastname() ?></h5>
+    </div>
+
+    <table class="table table-striped table-bordered table-sm">
+        <tbody>
+            <tr><th>Email</th><td><?= $user->getEmail() ?></td></tr>
+            <tr><th>Adresse</th><td><?= $user->getAdress() ?></td></tr>
+            <tr><th>Code postal</th><td><?= $user->getZip_Code() ?></td></tr>
+            <tr><th>Ville</th><td><?= $user->getCity() ?></td></tr>
+        </tbody>
+    </table>
+
+<?php
+    }  
+?>
+
+<?php
+    } // end else if no error
     include "view/template/footer.php";
 ?>

@@ -14,8 +14,22 @@ class BookManager extends Manager {
         return $books;
     }
 
+    // Récupère tous les livres empruntés par un utilisateur
+    public function getBooksByUserId(int $id):?Array {
+        $query = $this->db->prepare("SELECT * FROM Book WHERE user_id = :id");
+        $query->execute([
+            "id" => $id
+        ]);
+
+        $books = $query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($books as $key => $book) {
+            $books[$key] = new Book($book);
+        }
+        return $books;
+    }
+
     // Récupère un livre
-    public function getBook(int $id):?Book {
+    public function getBook(int $id) {
         $query = $this->db->prepare("SELECT * FROM Book WHERE id = :id");
         $query->execute([
             "id" => $id
@@ -31,7 +45,7 @@ class BookManager extends Manager {
     // Ajoute un nouveau livre
     public function addBook(Book $book):?int {
         $query = $this->db->prepare(
-            "INSERT INTO Book VALUE (null, :title, :author, :summary, :release_date, :category, 'disponible', null)"
+            "INSERT INTO Book VALUE (null, :title, :author, :summary, :release_date, :category, 'Disponible', null)"
         );
 
         $result = $query->execute([
