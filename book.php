@@ -11,68 +11,76 @@ if (empty($_GET) || !isset($_GET["id"])) {
     header("Location: index.php");
     exit();
 }
-
-// Emprunt de livre
-if(isset($_POST["loan_book"])) {
-    $bookManager = new BookManager();
-
-    $bookId = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
-
-    if (isset($_POST["user"])) {
-        $userId = filter_var($_POST["user"], FILTER_SANITIZE_NUMBER_INT);
-        $status = 'Emprunté';
-    }
-
-    $result = $bookManager->updateBookStatus($bookId, $status, $userId);
-
-    if($result) {
-        header("Location: index.php");
-        exit();
-    }
-    $error = "Une erreur est survenue, le livre n'a pas pu être emprunté";
-}
-
-// Retour de livre
-if(isset($_POST["return_book"])) {
-    $bookManager = new BookManager();
-
-    $bookId = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
-
-    $result = $bookManager->updateBookStatus($bookId, 'Disponible', null);
-
-    if($result) {
-        header("Location: index.php");
-        exit();
-    }
-    $error = "Une erreur est survenue, le livre n'a pas pu être restitué";
-}
-
-// Suppression de livre
-if(isset($_POST["delete_book"])) {
-    $bookManager = new BookManager();
-
-    $bookId = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
-
-    $result = $bookManager->deleteBook($bookId);
-
-    if($result) {
-        header("Location: index.php");
-        exit();
-    }
-    $error = "Une erreur est survenue, le livre n'a pas pu être supprimé";
-}
-
-
-$id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
-
+$bookId = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
 $bookManager = new BookManager();
-$book = $bookManager->getBook($id);
+
+try {
+    // Emprunt de livre
+    if(isset($_POST["loan_book"])) {
+        global $bookManager, $bookId;
+
+        if (isset($_POST["user"])) {
+            $userId = filter_var($_POST["user"], FILTER_SANITIZE_NUMBER_INT);
+            $userId = intval($userId,10);
+
+            if (!$userId) throw new Exception(" N° adhérent non valide");
+
+            $userManager = new UserManager();
+            $user = $userManager->getUserById($userId);
+
+            if(!$user) throw new Exception(" N° adhérent non valide");
+
+            $result = $bookManager->updateBookStatus($bookId, 'Emprunté', $userId);
+
+            if($result) {
+                header("Location: index.php");
+                exit();
+            }
+            throw new Exception("le livre n'a pas pu être emprunté");
+        }
+        throw new Exception("pas d'adhérent spécifié");
+    }
+
+    // Retour de livre
+    if(isset($_POST["return_book"])) {
+        global $bookManager, $bookId;
+
+        $result = $bookManager->updateBookStatus($bookId, 'Disponible', null);
+        if($result) {
+            header("Location: index.php");
+            exit();
+        }
+        throw new Exception("le livre n'a pas pu être restitué");
+    }
+
+    // Suppression de livre
+    if(isset($_POST["delete_book"])) {
+        global $bookManager, $bookId;
+
+        $result = $bookManager->deleteBook($bookId);
+        if($result) {
+            header("Location: index.php");
+            exit();
+        }
+        throw new Exception("le livre n'a pas pu être supprimé");
+    }
+}
+catch (\Exception $e) {
+    $error = "Une erreur est survenue, " . $e->getMessage();
+}
 
 $status = '';
-if(!$book) {
+$book = $bookManager->getBook($bookId);
+if(!$book)
     $error ="Livre non trouvé";
-} else {
+else {
     $status = $book->getStatus();
+
+    if ($status=='Emprunté') {
+        $id = $book->getUser_id();
+        $userManager = new UserManager();
+        $user = $userManager->getUserById($id);
+    }    
 }
 
 require "view/bookView.php";

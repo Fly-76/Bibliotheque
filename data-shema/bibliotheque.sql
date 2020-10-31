@@ -10,9 +10,9 @@ DROP DATABASE IF EXISTS bibliotheque;
 CREATE DATABASE bibliotheque CHARACTER SET 'utf8mb4';
 USE bibliotheque;
 
-DROP USER IF EXISTS 'bibliothecaire'@'Localhost';
-CREATE USER 'bibliothecaire'@'Localhost';
-GRANT ALL PRIVILEGES ON bibliotheque.* To 'bibliothecaire'@'Localhost' IDENTIFIED BY 'biblio';
+-- DROP USER IF EXISTS 'root'@'Localhost';
+-- CREATE USER 'root'@'Localhost';
+-- GRANT ALL PRIVILEGES ON bibliotheque.* To 'bibliothecaire'@'Localhost' IDENTIFIED BY 'root';
 
 
 CREATE TABLE User(

@@ -3,6 +3,9 @@
 require "model/entity/user.php";
 require "model/userManager.php";
 
+require "model/entity/book.php";
+require "model/bookManager.php";
+
 if (empty($_GET) || !isset($_GET["id"])) {
   header("Location: index.php");
 }
@@ -15,5 +18,8 @@ $user = $userManager->getUserById($id);
 if(!$user) {
   $error ="Utilisateur non trouvé";
 }
+
+$bookManager = new BookManager();
+$books = $bookManager->getBooksByUserId($id);
 
 require "view/userView.php";
